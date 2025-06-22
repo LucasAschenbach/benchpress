@@ -1,0 +1,14 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "Benchpress example project",
+  "scripts": {
+    "bench": "benchpress"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "benchpress": "workspace:*"
+  }
+} 
