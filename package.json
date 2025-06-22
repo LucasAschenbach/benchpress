@@ -1,0 +1,45 @@
+{
+  "name": "benchpress",
+  "version": "0.1.0",
+  "description": "A simple benchmarking framework for javascript, inspired by Jest.",
+  "author": "Lucas Aschenbach",
+  "type": "module",
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./cli": "./bin/benchpress.js",
+    "./package.json": "./package.json"
+  },
+  "types": "dist/index.d.ts",
+  "bin": {
+    "benchpress": "bin/benchpress.js"
+  },
+  "files": [
+    "dist/**",
+    "bin/benchpress.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsc -p tsconfig.build.json",
+    "prepack": "npm run clean && npm run build",
+    "bench": "node --import tsx ./bin/benchpress"
+  },
+  "keywords": ["benchmark", "tinybench", "jest", "cli"],
+  "license": "MIT",
+  "repository": "github:lucasaschenbach/benchpress",
+  "packageManager": "pnpm@10.11.0",
+  "devDependencies": {
+    "@types/node": "^24.0.3",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^14.0.0",
+    "fast-glob": "^3.3.3",
+    "pathe": "^2.0.3",
+    "tinybench": "^4.0.1"
+  }
+}
