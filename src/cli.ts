@@ -4,9 +4,9 @@ import { pathToFileURL } from 'node:url';
 import { run } from './core/runner.js';
 import { GlobalCollector } from './core/collector.js';
 import { resolve } from 'pathe';
-import './api/globals.js';
 
 export async function createInterface() {
+  console.log('createInterface');
   const program = new Command()
     .option('-r, --reporter <pretty|json>', 'output format', 'pretty')
     .option('-o, --output <file>', 'json output path')

@@ -5,6 +5,7 @@
  *  2. Hands off to the core runner in src/
  */
 import { createInterface } from '../src/cli';
+import '../src/api/globals.js';
 
 createInterface().catch(err => {
   console.error(err);

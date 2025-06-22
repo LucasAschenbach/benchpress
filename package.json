@@ -4,27 +4,22 @@
   "description": "A simple benchmarking framework for javascript, inspired by Jest.",
   "author": "Lucas Aschenbach",
   "type": "module",
-  "main": "dist/index.js",
-  "exports": {
-    ".": "./dist/index.js",
-    "./cli": "./bin/benchpress.js",
-    "./package.json": "./package.json"
-  },
-  "types": "dist/index.d.ts",
+  "types": "dist/src/types/global.d.ts",
   "bin": {
-    "benchpress": "bin/benchpress.js"
+    "benchpress": "dist/bin/benchpress.js"
   },
   "files": [
     "dist/**",
-    "bin/benchpress.js",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
+    "dev": "tsx bin/benchpress.ts",
     "clean": "rimraf dist",
-    "build": "tsc -p tsconfig.build.json",
-    "prepack": "npm run clean && npm run build",
-    "bench": "node --import tsx ./bin/benchpress"
+    "build:cli": "pnpm dlx esbuild bin/benchpress.ts --bundle --packages=external --platform=node --format=esm --outfile=dist/bin/benchpress.js && sed -i '' 's/--import tsx//' dist/bin/benchpress.js && chmod +x dist/bin/benchpress.js",
+    "build": "pnpm run clean && tsc -p tsconfig.build.json && pnpm run build:cli",
+    "prepack": "pnpm run build",
+    "bench": "node dist/bin/benchpress.js"
   },
   "keywords": ["benchmark", "tinybench", "jest", "cli"],
   "license": "MIT",
@@ -32,7 +27,7 @@
   "packageManager": "pnpm@10.11.0",
   "devDependencies": {
     "@types/node": "^24.0.3",
-    "tsx": "^4.20.3",
+    "rimraf": "^5.0.10",
     "typescript": "^5.8.3"
   },
   "dependencies": {
